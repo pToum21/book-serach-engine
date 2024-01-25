@@ -25,7 +25,7 @@ const resolvers = {
                 return updatedUser;
             }
 
-            // throw AuthenticationError
+            throw AuthenticationError
         },
         saveBook: async (parent, { bookData }, context) => {
             if (context.user) {
@@ -38,7 +38,7 @@ const resolvers = {
                 return updatedUser;
             }
 
-            // throw AuthenticationError;
+            throw AuthenticationError;
         },
 
     }
