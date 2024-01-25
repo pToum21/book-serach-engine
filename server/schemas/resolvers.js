@@ -20,11 +20,16 @@ const resolvers = {
                 {_id: bookId},
                 {new:true}
                 )
+            return book;    
         },
-        saveBook: async () => {
+        saveBook: async (parent,  { args }) => {
+                const book = await Book.findOneAndUpdate(
+                    {_id},
+                    
+                )
+                return book;
+        },
 
-        },
-        
     }
 }
 
