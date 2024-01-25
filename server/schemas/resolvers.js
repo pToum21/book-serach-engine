@@ -10,24 +10,35 @@ const resolvers = {
 
     Mutation: {
         addUser: async (_, args) => {
-            const user =await User.create(args);
+            const user = await User.create(args);
             const token = signToken(user)
 
-            return {token, user}
+            return { token, user }
         },
-        removeBook: async (parent, {bookId}) => {
-            const book = await Book.findOneAndDelete(
-                {_id: bookId},
-                {new:true}
-                )
-            return book;    
+        removeBook: async (parent, { bookId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { savedBooks: { bookId } } },
+                    { new: true }
+                );
+                return updatedUser;
+            }
+
+            // throw AuthenticationError
         },
-        saveBook: async (parent,  { args }) => {
-                const book = await Book.findOneAndUpdate(
-                    {_id},
-                    
-                )
-                return book;
+        saveBook: async (parent, { bookData }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { savedBooks: bookData } },
+                    { new: true }
+                );
+
+                return updatedUser;
+            }
+
+            // throw AuthenticationError;
         },
 
     }
