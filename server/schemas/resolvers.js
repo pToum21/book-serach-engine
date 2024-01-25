@@ -14,7 +14,17 @@ const resolvers = {
             const token = signToken(user)
 
             return {token, user}
-        }
+        },
+        removeBook: async (parent, {bookId}) => {
+            const book = await Book.findOneAndDelete(
+                {_id: bookId},
+                {new:true}
+                )
+        },
+        saveBook: async () => {
+
+        },
+        
     }
 }
 
