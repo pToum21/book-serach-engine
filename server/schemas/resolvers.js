@@ -3,13 +3,13 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        user: async () => {
+        me: async () => {
             return User.findOne({ username })
         }
     },
 
     Mutation: {
-        addUser: async () => {
+        addUser: async (_, args) => {
             const user =await User.create(args);
             const token = signToken(user)
 
