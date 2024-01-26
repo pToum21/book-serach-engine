@@ -4,10 +4,11 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
+            console.log('context.user:', context.user);
             if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id }).select('_v -password');
-
-                return userData
+                const userData = await User.findOne({ _id: _context_.user._id }).select('-__v -password');
+                console.log('userData:', userData);
+                return userData;
             }
             throw AuthenticationError;
         }
