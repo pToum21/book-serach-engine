@@ -23,6 +23,7 @@ they must run rpm init -y and npm i to install dependiences used when creating t
  You must run npm i to download the correct packages.
 
 ## Preview Photo
+![React Book Search Engine](https://github.com/pToum21/book-serach-engine/assets/138056441/d9d60ebd-b3c8-4a35-b18b-0034479c1c9a)
 
 ## Deployed Application
 
