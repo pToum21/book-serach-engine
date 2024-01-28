@@ -2,6 +2,7 @@ const { User } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
+    // the one query 
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
@@ -12,6 +13,8 @@ const resolvers = {
             throw AuthenticationError;
         },
     },
+
+    //all the mutations 
 
     Mutation: {
         addUser: async (parent, args) => {
